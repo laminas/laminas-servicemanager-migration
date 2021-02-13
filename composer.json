@@ -1,5 +1,5 @@
 {
-    "name": "laminas/laminas-{component}",
+    "name": "laminas/laminas-servicemanager-migration",
     "description": "",
     "license": "BSD-3-Clause",
     "keywords": [
@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Laminas\\{component-namespace}\\": "src//"
+            "Laminas\\ServiceManager\\Migration\\": "src//"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LaminasTest\\{component-namespace}\\": "test/"
+            "LaminasTest\\ServiceManager\\Migration\\": "test/"
         }
     },
     "extra": {
@@ -34,7 +34,7 @@
             "dev-master": "1.0.x-dev"
         },
         "laminas": {
-            "module": "Laminas\\{component-namespace}"
+            "module": "Laminas\\ServiceManager\\Migration"
         }
     },
     "config": {
