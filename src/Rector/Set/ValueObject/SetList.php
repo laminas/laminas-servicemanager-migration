@@ -1,6 +1,6 @@
 <?php
 
-namespace Laminas\ServiceManager\Migration;
+namespace Laminas\ServiceManager\Migration\Rector\Set\ValueObject;
 
 final class SetList
 {

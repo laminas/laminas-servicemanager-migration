@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Rector\Laminas\Rector\MethodCall\RemoveServiceLocatorRector;
 use Rector\Renaming\Rector\Name\RenameClassRector;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
