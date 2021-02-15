@@ -19,12 +19,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'Laminas\ServiceManager\FactoryInterface' => 'Laminas\ServiceManager\Factory\FactoryInterface',
             'Laminas\ServiceManager\DelegatorFactoryInterface' => 'Laminas\ServiceManager\Factory\DelegatorFactoryInterface',
             'Laminas\ServiceManager\InitializerInterface' => 'Laminas\ServiceManager\Initializer\InitializerInterface',
-
-            // update deprecated root factory to new factory under new namespace for laminas/laminas-zendframework-bridge
-            'Zend\ServiceManager\AbstractFactoryInterface' => 'Laminas\ServiceManager\Factory\AbstractFactoryInterface',
-            'Zend\ServiceManager\FactoryInterface' => 'Laminas\ServiceManager\Factory\FactoryInterface',
-            'Zend\ServiceManager\DelegatorFactoryInterface' => 'Laminas\ServiceManager\Factory\DelegatorFactoryInterface',
-            'Zend\ServiceManager\InitializerInterface' => 'Laminas\ServiceManager\Initializer\InitializerInterface',
         ],
     ]]);
 };
