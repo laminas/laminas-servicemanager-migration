@@ -1,6 +1,6 @@
 # laminas-servicemanager-migration
 
-### Using with Rector
+## Using with Rector
 
 To use with rector, you can create the following `rector.php`:
 
@@ -32,4 +32,3 @@ Ensure that the change is correct, if everything ok, you can run the fix:
 ```bash
 vendor/bin/rector process
 ```
-
