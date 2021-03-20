@@ -7,6 +7,7 @@
     <arg value="p"/>
     <arg name="colors"/>
 
+    <file>config</file>
     <file>src</file>
     <file>test</file>
 
