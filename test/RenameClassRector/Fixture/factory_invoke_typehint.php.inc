@@ -11,7 +11,7 @@ class FactoryInvokeTypehint
 	{
 		$adapter = $container->get('example');
 
-        return new Service($adapter);
+                return new Service($adapter);
 	}
 }
 
@@ -30,7 +30,7 @@ class FactoryInvokeTypehint
 	{
 		$adapter = $container->get('example');
 
-        return new Service($adapter);
+                return new Service($adapter);
 	}
 }
 
