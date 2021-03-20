@@ -6,7 +6,7 @@ use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\ServiceManager\DelegatorFactoryInterface;
 
-class ImplementsRootDelegatorFactoryInterface implements DelegatorFactoryInterface
+class ImplementsRootInitializerFactoryInterface implements DelegatorFactoryInterface
 {
     public function createDelegatorWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName, $callback)
     {
@@ -29,7 +29,7 @@ use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\ServiceManager\DelegatorFactoryInterface;
 
-class ImplementsRootDelegatorFactoryInterface implements \Laminas\ServiceManager\Factory\DelegatorFactoryInterface
+class ImplementsRootInitializerFactoryInterface implements \Laminas\ServiceManager\Factory\DelegatorFactoryInterface
 {
     public function createDelegatorWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName, $callback)
     {
