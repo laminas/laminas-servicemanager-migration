@@ -3,7 +3,6 @@
 namespace LaminasTest\ServiceManager\Migration\RenameClassRector\Fixture;
 
 use Laminas\ServiceManager\FactoryInterface;
-use LaminasTest\ServiceManager\Migration\RenameClassRector\Source\Service;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
@@ -27,7 +26,6 @@ class ImplementsRootFactoryInterface implements FactoryInterface
 namespace LaminasTest\ServiceManager\Migration\RenameClassRector\Fixture;
 
 use Laminas\ServiceManager\FactoryInterface;
-use LaminasTest\ServiceManager\Migration\RenameClassRector\Source\Service;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 

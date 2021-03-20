@@ -8,7 +8,6 @@ class FactoryInvokeTypehint
 {
 	public function __invoke(ContainerInterface $container)
 	{
-
 	}
 }
 
