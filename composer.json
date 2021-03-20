@@ -1,6 +1,6 @@
 {
     "name": "laminas/laminas-servicemanager-migration",
-    "description": "Migrate to next laminas-servicemanager 4.0 compatible code utilize Rector rules.",
+    "description": "Migrate your code to laminas-servicemanager 4.x compatibility utilizing Rector rules.",
     "license": "BSD-3-Clause",
     "keywords": [
         "laminas",
