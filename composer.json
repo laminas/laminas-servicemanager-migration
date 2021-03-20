@@ -3,7 +3,9 @@
     "description": "",
     "license": "BSD-3-Clause",
     "keywords": [
-        "laminas"
+        "laminas",
+        "servicemanager",
+        "migration"
     ],
     "support": {
         "docs": "https://docs.laminas.dev/laminas-servicemanager-migration/",
