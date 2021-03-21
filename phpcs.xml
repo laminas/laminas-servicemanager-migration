@@ -11,5 +11,5 @@
     <file>src</file>
     <file>test</file>
 
-    <exclude-pattern>test/Rector/nameClassRector/Fixture/*.php.inc</exclude-pattern>
+    <exclude-pattern>test/Rector/RenameClassRector/Fixture/*.php.inc</exclude-pattern>
 </ruleset>
