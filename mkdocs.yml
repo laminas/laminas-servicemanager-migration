@@ -3,6 +3,6 @@ site_dir: docs/html
 nav:
     - Home: index.md
     - Introduction: v1/intro.md
-site_name: 'laminas-{component}'
-site_description: ''
-repo_url: 'https://github.com/laminas/laminas-{component}'
+site_name: 'laminas-servicemanager-migration'
+site_description: 'Migrate your code to laminas-servicemanager 4.x compatibility utilizing Rector rules.'
+repo_url: 'https://github.com/laminas/laminas-servicemanager-migration'
