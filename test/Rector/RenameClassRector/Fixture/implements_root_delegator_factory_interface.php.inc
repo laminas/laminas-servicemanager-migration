@@ -1,6 +1,6 @@
 <?php
 
-namespace LaminasTest\ServiceManager\Migration\RenameClassRector\Fixture;
+namespace LaminasTest\ServiceManager\Migration\Rector\RenameClassRector\Fixture;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
@@ -23,7 +23,7 @@ class ImplementsRootInitializerFactoryInterface implements DelegatorFactoryInter
 -----
 <?php
 
-namespace LaminasTest\ServiceManager\Migration\RenameClassRector\Fixture;
+namespace LaminasTest\ServiceManager\Migration\Rector\RenameClassRector\Fixture;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;

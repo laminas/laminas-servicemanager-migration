@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LaminasTest\ServiceManager\Migration\RenameClassRector;
+namespace LaminasTest\ServiceManager\Migration\Rector\RenameClassRector;
 
 use Iterator;
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
