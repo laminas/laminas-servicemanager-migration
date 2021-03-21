@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\ServiceManager\Migration\Rector\RenameClassRector;
 
 use Iterator;
+use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
 use Symplify\SmartFileSystem\SmartFileInfo;
 
@@ -28,6 +29,6 @@ final class RenameClassRectorTest extends AbstractRectorTestCase
 
     public function provideConfigFilePath(): string
     {
-        return __DIR__ . '/../../config/rector/set/laminas-servicemanager-40.php';
+        return SetList::LAMINAS_SERVICEMANGER_40;
     }
 }
