@@ -1,7 +1,7 @@
 # laminas-servicemanager-migration
 
-[![Build Status](https://travis-ci.com/laminas/laminas-servicemanager-migration.svg?branch=master)](https://travis-ci.com/laminas/laminas-servicemanager-migration)
-[![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-servicemanager-migration/badge.svg?branch=master)](https://coveralls.io/github/laminas/laminas-servicemanager-migration?branch=master)
+![Build Status](https://github.com/laminas/laminas-servicemanager-migration/workflows/Continuous%20Integration/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-servicemanager-migration/badge.svg?branch=0.1.x)](https://coveralls.io/github/laminas/laminas-servicemanager-migration?branch=0.1.x)
 
 Migrate your code to laminas-servicemanager 4.x compatibility utilizing [Rector](https://github.com/rectorphp/rector) rules.
 

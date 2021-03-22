@@ -19,6 +19,7 @@
         "rector/rector": "^0.9.28"
     },
     "require-dev": {
+        "laminas/laminas-servicemanager": "^3.6",
         "phpunit/phpunit": "^9.0",
         "squizlabs/php_codesniffer": "^3.5"
     },
