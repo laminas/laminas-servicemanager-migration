@@ -1,7 +1,6 @@
 # laminas-servicemanager-migration
 
-![Build Status](https://github.com/laminas/laminas-servicemanager-migration/workflows/Continuous%20Integration/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-servicemanager-migration/badge.svg?branch=0.1.x)](https://coveralls.io/github/laminas/laminas-servicemanager-migration?branch=0.1.x)
+[![Build Status](https://github.com/laminas/laminas-servicemanager-migration/workflows/Continuous%20Integration/badge.svg)](https://github.com/laminas/laminas-servicemanager-migration/actions?query=workflow%3A"Continuous+Integration")
 
 Migrate your code to laminas-servicemanager 4.x compatibility utilizing [Rector](https://github.com/rectorphp/rector) rules.
 
