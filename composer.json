@@ -1,19 +1,12 @@
 {
     "name": "laminas/laminas-servicemanager-migration",
     "description": "Migrate your code to laminas-servicemanager 4.x compatibility utilizing Rector rules.",
-    "license": "BSD-3-Clause",
     "keywords": [
         "laminas",
         "servicemanager",
         "migration"
     ],
-    "support": {
-        "docs": "https://docs.laminas.dev/laminas-servicemanager-migration/",
-        "issues": "https://github.com/laminas/laminas-servicemanager-migration/issues",
-        "source": "https://github.com/laminas/laminas-servicemanager-migration",
-        "rss": "https://github.com/laminas/laminas-servicemanager-migration/releases.atom",
-        "forum": "https://discourse.laminas.dev/"
-    },
+    "license": "BSD-3-Clause",
     "require": {
         "php": "^7.3 || ~8.0.0",
         "rector/rector": "^0.10"
@@ -22,6 +15,9 @@
         "laminas/laminas-servicemanager": "^3.6",
         "phpunit/phpunit": "^9.0",
         "squizlabs/php_codesniffer": "^3.5"
+    },
+    "config": {
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
@@ -33,13 +29,17 @@
             "LaminasTest\\ServiceManager\\Migration\\": "test/"
         }
     },
-    "config": {
-        "sort-packages": true
-    },
     "scripts": {
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    },
+    "support": {
+        "issues": "https://github.com/laminas/laminas-servicemanager-migration/issues",
+        "forum": "https://discourse.laminas.dev/",
+        "source": "https://github.com/laminas/laminas-servicemanager-migration",
+        "docs": "https://docs.laminas.dev/laminas-servicemanager-migration/",
+        "rss": "https://github.com/laminas/laminas-servicemanager-migration/releases.atom"
     }
 }
