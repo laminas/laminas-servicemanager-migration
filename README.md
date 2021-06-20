@@ -14,8 +14,7 @@ $ composer require laminas/laminas-servicemanager-migration
 
 ## Documentation
 
-Browse the documentation online at https://docs.laminas.dev/laminas-servicemanager-migration/
-
+Browse the documentation online at https://docs.laminas.dev/laminas-servicemanager/migration/
 ## Support
 
 * [Issues](https://github.com/laminas/laminas-servicemanager-migration/issues/)
