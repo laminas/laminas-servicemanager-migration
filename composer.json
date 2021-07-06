@@ -16,15 +16,12 @@
     },
     "require": {
         "php": "^7.3 || ~8.0.0",
-        "rector/rector": "^0.11"
+        "rector/rector": "^0.11.35"
     },
     "require-dev": {
         "laminas/laminas-servicemanager": "^3.6",
         "phpunit/phpunit": "^9.0",
         "squizlabs/php_codesniffer": "^3.5"
-    },
-    "conflict": {
-        "rector/rector": "0.11.33"
     },
     "autoload": {
         "psr-4": {
