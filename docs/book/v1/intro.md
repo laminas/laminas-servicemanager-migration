@@ -21,6 +21,25 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 };
 ```
 
+If you want to make renamed class type hint auto import enabled, you may use `SetList::LAMINAS_SERVICEMANGER_40_AUTO_IMPORT` set list, so the `rector.php` config will be as follow:
+
+```php
+<?php
+// rector.php
+declare(strict_types=1);
+
+use Rector\Core\Configuration\Option;
+use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $containerConfigurator): void {
+    $containerConfigurator->import(SetList::LAMINAS_SERVICEMANGER_40_AUTO_IMPORT);
+
+    $parameters = $containerConfigurator->parameters();
+    $parameters->set(Option::PATHS, [__DIR__ . '/module']);
+};
+```
+
 Above, the `Option::PATHS` is paths you want rector to run. After configuration in place, you can run:
 
 ```bash
