@@ -17,10 +17,10 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition('Rector implements ServiceManager AbstractFactoryInterface to Psr Factory', [
+        return new RuleDefinition('Rector implements ServiceManager FactoryInterface to Psr Factory', [
             new CodeSample(
                 <<<'CODE_SAMPLE'
-                class ImplementsRootAbstractFactoryInterface implements AbstractFactoryInterface
+                class ImplementsRootAbstractFactoryInterface implements FactoryInterface
                 {
                     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
                     {
