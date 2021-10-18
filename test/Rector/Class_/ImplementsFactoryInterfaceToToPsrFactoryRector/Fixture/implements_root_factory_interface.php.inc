@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LaminasTest\ServiceManager\Migration\Rector\Class_\ImplementsAbstractFactoryToPsrFactoryRector\Fixture;
+namespace LaminasTest\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToToPsrFactoryRector\Fixture;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
@@ -21,7 +21,7 @@ class ImplementsRootAbstractFactoryInterface implements FactoryInterface
 
 declare(strict_types=1);
 
-namespace LaminasTest\ServiceManager\Migration\Rector\Class_\ImplementsAbstractFactoryToPsrFactoryRector\Fixture;
+namespace LaminasTest\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToToPsrFactoryRector\Fixture;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;

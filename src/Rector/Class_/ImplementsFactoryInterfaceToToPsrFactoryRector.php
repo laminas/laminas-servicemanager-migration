@@ -7,12 +7,11 @@ use PhpParser\Node\Stmt\Class_;
 use Rector\Core\Rector\AbstractRector;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use PhpParser\Node\Name\FullyQualified;
-use PhpParser\Node\Param;
 use PhpParser\Node\Stmt\ClassMethod;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
-final class ImplementsAbstractFactoryToPsrFactoryRector extends AbstractRector
+final class ImplementsFactoryInterfaceToToPsrFactoryRector extends AbstractRector
 {
     private const FACTORY_INTERFACE = FactoryInterface::class;
 

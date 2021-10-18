@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace LaminasTest\ServiceManager\Migration\Rector\Class_\ImplementsAbstractFactoryToPsrFactoryRector;
+namespace LaminasTest\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToToPsrFactoryRector;
 
 use Iterator;
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
 use Symplify\SmartFileSystem\SmartFileInfo;
 
-final class ImplementsAbstractFactoryToPsrFactoryRectorTest extends AbstractRectorTestCase
+final class ImplementsFactoryInterfaceToToPsrFactoryRectorTest extends AbstractRectorTestCase
 {
     /**
      * @dataProvider provideData()
