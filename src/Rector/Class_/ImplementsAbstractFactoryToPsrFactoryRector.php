@@ -22,7 +22,7 @@ final class ImplementsAbstractFactoryToPsrFactoryRector extends AbstractRector
 
     public function getRuleDefinition(): RuleDefinition
     {
-        return new RuleDefinition('Shortens else/if to elseif', [
+        return new RuleDefinition('Rector implements ServiceManager AbstractFactoryInterface to Psr Factory', [
             new CodeSample(
                 <<<'CODE_SAMPLE'
                 class ImplementsRootAbstractFactoryInterface implements AbstractFactoryInterface
