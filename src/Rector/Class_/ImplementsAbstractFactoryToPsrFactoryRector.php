@@ -5,8 +5,7 @@ namespace Laminas\ServiceManager\Migration\Rector\Class_;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use Rector\Core\Rector\AbstractRector;
-use Laminas\ServiceManager\AbstractFactoryInterface;
-use Laminas\ServiceManager\Factory\AbstractFactoryInterface as NewAbstractFactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Param;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -15,10 +14,7 @@ use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 final class ImplementsAbstractFactoryToPsrFactoryRector extends AbstractRector
 {
-    private const ABSTRACT_FACTORIES = [
-        AbstractFactoryInterface::class,
-        NewAbstractFactoryInterface::class,
-    ];
+    private const FACTORY_INTERFACE = FactoryInterface::class;
 
     public function getRuleDefinition(): RuleDefinition
     {
@@ -60,7 +56,7 @@ final class ImplementsAbstractFactoryToPsrFactoryRector extends AbstractRector
                 continue;
             }
 
-            if ($this->nodeNameResolver->isNames($implement, self::ABSTRACT_FACTORIES)) {
+            if ($this->nodeNameResolver->isName($implement, self::FACTORY_INTERFACE)) {
                 return false;
             }
         }
@@ -83,7 +79,7 @@ final class ImplementsAbstractFactoryToPsrFactoryRector extends AbstractRector
         }
 
         foreach ($node->implements as $key => $implement) {
-            if ($this->nodeNameResolver->isNames($implement, self::ABSTRACT_FACTORIES)) {
+            if ($this->nodeNameResolver->isName($implement, self::FACTORY_INTERFACE)) {
                 unset($node->implements[$key]);
             }
         }

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace LaminasTest\ServiceManager\Migration\Rector\Class_\ImplementsAbstractFactoryToPsrFactoryRector\Fixture;
 
 use Interop\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
-class ImplementsRootAbstractFactoryInterface implements AbstractFactoryInterface
+class ImplementsRootAbstractFactoryInterface implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
@@ -24,7 +24,7 @@ declare(strict_types=1);
 namespace LaminasTest\ServiceManager\Migration\Rector\Class_\ImplementsAbstractFactoryToPsrFactoryRector\Fixture;
 
 use Interop\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class ImplementsRootAbstractFactoryInterface
 {
