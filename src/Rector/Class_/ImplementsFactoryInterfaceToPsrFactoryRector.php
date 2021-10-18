@@ -11,7 +11,7 @@ use PhpParser\Node\Stmt\ClassMethod;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
-final class ImplementsFactoryInterfaceToToPsrFactoryRector extends AbstractRector
+final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 {
     private const FACTORY_INTERFACE = FactoryInterface::class;
 

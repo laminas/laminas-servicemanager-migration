@@ -13,5 +13,5 @@
 
     <exclude-pattern>test/Rector/RenameClassRector/Fixture/*.php.inc</exclude-pattern>
     <exclude-pattern>test/Rector/RenameClassRector/FixtureAutoImport/*.php.inc</exclude-pattern>
-    <exclude-pattern>test/Rector/Class_/ImplementsFactoryInterfaceToToPsrFactoryRector/Fixture/*.php.inc</exclude-pattern>
+    <exclude-pattern>test/Rector/Class_/ImplementsFactoryInterfaceToPsrFactoryRector/Fixture/*.php.inc</exclude-pattern>
 </ruleset>
