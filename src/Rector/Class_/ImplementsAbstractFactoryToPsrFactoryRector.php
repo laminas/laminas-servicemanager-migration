@@ -44,9 +44,9 @@ final class ImplementsAbstractFactoryToPsrFactoryRector extends AbstractRector
 
         $node->extends = null;
         $firstParam = $node->params[0];
-        $node->params = [];
+        $invokeMethod->params = [];
         $firstParam->type = new FullyQualified('Psr\Container\ContainerInterface');
-        $node->params[0] = $firstParam;
+        $invokeMethod->params[0] = $firstParam;
 
         return $node;
     }
