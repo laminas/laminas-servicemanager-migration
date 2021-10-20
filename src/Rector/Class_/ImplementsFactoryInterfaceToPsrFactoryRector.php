@@ -6,14 +6,29 @@ use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use Rector\Core\Rector\AbstractRector;
 use Laminas\ServiceManager\Factory\FactoryInterface;
+use PhpParser\Node\Identifier;
+use PhpParser\Node\Name;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Stmt\ClassMethod;
+use PhpParser\Node\Stmt\Use_;
+use PhpParser\Node\Stmt\UseUse;
+use Rector\Core\Configuration\Option;
+use Rector\NodeTypeResolver\Node\AttributeKey;
+use Rector\Renaming\NodeManipulator\ClassRenamer;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 {
     private const FACTORY_INTERFACE = FactoryInterface::class;
+
+    /** @var ClassRenamer */
+    private $classRenamer;
+
+    public function __construct(ClassRenamer $classRenamer)
+    {
+        $this->classRenamer = $classRenamer;
+    }
 
     public function getRuleDefinition(): RuleDefinition
     {
@@ -88,6 +103,36 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
         $firstParam->type = new FullyQualified('Psr\Container\ContainerInterface');
         $invokeMethod->params[0] = $firstParam;
 
+        $this->replaceUseInteropStatementOnAutoImportEnabled($node);
+
         return $node;
+    }
+
+    private function replaceUseInteropStatementOnAutoImportEnabled(Class_ $class)
+    {
+        if (! $this->parameterProvider->provideBoolParameter(Option::AUTO_IMPORT_NAMES)) {
+            return;
+        }
+
+        $use = $this->betterNodeFinder->findFirstPreviousOfNode($class, function (Node $subNode): bool {
+            if (! $subNode instanceof Use_) {
+                return false;
+            }
+
+            $uses = $subNode->uses;
+            if (count($uses) > 1) { // skip group
+                return false;
+            }
+
+            if ($uses[0]->alias instanceof Identifier) {
+                return false;
+            }
+
+            return $uses[0]->name->toString() === 'Interop\Container\ContainerInterface';
+        });
+
+        if ($use instanceof Use_) {
+            $this->removeNode($use);
+        }
     }
 }
