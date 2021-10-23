@@ -7,14 +7,12 @@ use PhpParser\Node\Stmt\Class_;
 use Rector\Core\Rector\AbstractRector;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use PhpParser\Node\Identifier;
-use PhpParser\Node\Name;
 use PhpParser\Node\Name\FullyQualified;
+use PhpParser\Node\Param;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Use_;
-use PhpParser\Node\Stmt\UseUse;
 use Rector\Core\Configuration\Option;
 use Rector\NodeTypeResolver\Node\AttributeKey;
-use Rector\Renaming\NodeManipulator\ClassRenamer;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -22,19 +20,13 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 {
     private const FACTORY_INTERFACE = FactoryInterface::class;
 
-    /** @var ClassRenamer */
-    private $classRenamer;
-
-    public function __construct(ClassRenamer $classRenamer)
-    {
-        $this->classRenamer = $classRenamer;
-    }
-
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition('Rector implements ServiceManager FactoryInterface to Psr Factory', [
             new CodeSample(
                 <<<'CODE_SAMPLE'
+                use Interop\Container\ContainerInterface;
+
                 class ImplementsRootAbstractFactoryInterface implements FactoryInterface
                 {
                     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
@@ -98,17 +90,45 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
             }
         }
 
-        $firstParam = $invokeMethod->params[0];
-        $invokeMethod->params = [];
-        $firstParam->type = new FullyQualified('Psr\Container\ContainerInterface');
-        $invokeMethod->params[0] = $firstParam;
+        $this->replaceInteropParam($node);
+
+        $params = $invokeMethod->getParams();
+        foreach (array_keys($params) as $key) {
+            if ($key > 0) {
+                unset($params[$key]);
+                continue;
+            }
+
+            $params[$key]->type = new FullyQualified('Psr\Container\ContainerInterface');
+        }
+        $invokeMethod->params = $params;
 
         $this->replaceUseInteropStatementOnAutoImportEnabled($node);
 
         return $node;
     }
 
-    private function replaceUseInteropStatementOnAutoImportEnabled(Class_ $class)
+    private function replaceInteropParam(Class_ $class): void
+    {
+        $this->traverseNodesWithCallable($class, function (Node $subNode): ?FullyQualified {
+            if (! $subNode instanceof FullyQualified) {
+                return null;
+            }
+
+            if (! $this->nodeNameResolver->isName($subNode, 'Interop\Container\ContainerInterface')) {
+                return null;
+            }
+
+            $parent = $subNode->getAttribute(AttributeKey::PARENT_NODE);
+            if (! $parent instanceof Param) { // edge case, avoid use Interop on purpose
+                return null;
+            }
+
+            return new FullyQualified('Psr\Container\ContainerInterface', $subNode->getAttributes());
+        });
+    }
+
+    private function replaceUseInteropStatementOnAutoImportEnabled(Class_ $class): void
     {
         if (! $this->parameterProvider->provideBoolParameter(Option::AUTO_IMPORT_NAMES)) {
             return;

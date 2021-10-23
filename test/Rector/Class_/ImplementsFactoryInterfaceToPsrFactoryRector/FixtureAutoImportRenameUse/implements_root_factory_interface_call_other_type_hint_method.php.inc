@@ -1,0 +1,42 @@
+<?php
+
+declare(strict_types=1);
+
+namespace LaminasTest\ServiceManager\Migration\Rector\Class_\FixtureAutoImportRenameUse\Fixture;
+
+use Interop\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+
+class ImplementsRootAbstractFactoryInterfaceCallOtherTypeHintMethod implements FactoryInterface
+{
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        $this->verify($container);
+    }
+    private function verify(ContainerInterface $container): void
+    {
+    }
+}
+
+?>
+-----
+<?php
+
+declare(strict_types=1);
+
+namespace LaminasTest\ServiceManager\Migration\Rector\Class_\FixtureAutoImportRenameUse\Fixture;
+
+use Laminas\ServiceManager\Factory\FactoryInterface;
+
+class ImplementsRootAbstractFactoryInterfaceCallOtherTypeHintMethod
+{
+    public function __invoke(\Psr\Container\ContainerInterface $container)
+    {
+        $this->verify($container);
+    }
+    private function verify(\Psr\Container\ContainerInterface $container): void
+    {
+    }
+}
+
+?>
