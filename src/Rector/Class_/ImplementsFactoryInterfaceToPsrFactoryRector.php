@@ -52,22 +52,6 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
         return [Class_::class];
     }
 
-    private function shouldSkip(Node $node): bool
-    {
-        $implements = $node->implements;
-        foreach ($implements as $implement) {
-            if (! $implement instanceof FullyQualified) {
-                continue;
-            }
-
-            if ($this->nodeNameResolver->isName($implement, self::FACTORY_INTERFACE)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     /**
      * @param Class_ $node
      */
@@ -90,6 +74,22 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
         return $node;
     }
 
+    private function shouldSkip(Node $node): bool
+    {
+        $implements = $node->implements;
+        foreach ($implements as $implement) {
+            if (! $implement instanceof FullyQualified) {
+                continue;
+            }
+
+            if ($this->nodeNameResolver->isName($implement, self::FACTORY_INTERFACE)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private function removeFactoryInterfaceFromImplements(Class_ $class): void
     {
         foreach ($class->implements as $key => $implement) {
@@ -97,20 +97,6 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
                 unset($class->implements[$key]);
             }
         }
-    }
-
-    private function replaceInvokeClassMethodParams(ClassMethod $classMethod): void
-    {
-        $params = $classMethod->getParams();
-        foreach (array_keys($params) as $key) {
-            if ($key > 0) {
-                unset($params[$key]);
-                continue;
-            }
-
-            $params[$key]->type = new FullyQualified('Psr\Container\ContainerInterface');
-        }
-        $classMethod->params = $params;
     }
 
     private function replaceInteropParam(Class_ $class): void
@@ -127,6 +113,20 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
             $subNode->parts[0] = 'Psr';
             return $subNode;
         });
+    }
+
+    private function replaceInvokeClassMethodParams(ClassMethod $classMethod): void
+    {
+        $params = $classMethod->getParams();
+        foreach (array_keys($params) as $key) {
+            if ($key > 0) {
+                unset($params[$key]);
+                continue;
+            }
+
+            $params[$key]->type = new FullyQualified('Psr\Container\ContainerInterface');
+        }
+        $classMethod->params = $params;
     }
 
     private function replaceUseInteropStatementOnAutoImportEnabled(Class_ $class): void
