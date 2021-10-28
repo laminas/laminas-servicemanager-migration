@@ -8,11 +8,9 @@ use Rector\Core\Rector\AbstractRector;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name\FullyQualified;
-use PhpParser\Node\Param;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Use_;
 use Rector\Core\Configuration\Option;
-use Rector\NodeTypeResolver\Node\AttributeKey;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -84,15 +82,26 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
             return null;
         }
 
-        foreach ($node->implements as $key => $implement) {
+        $this->removeFactoryInterfaceFromImplements($node);
+        $this->replaceInteropParam($node);
+        $this->replaceInvokeClassMethodParams($invokeMethod);
+        $this->replaceUseInteropStatementOnAutoImportEnabled($node);
+
+        return $node;
+    }
+
+    private function removeFactoryInterfaceFromImplements(Class_ $class): void
+    {
+        foreach ($class->implements as $key => $implement) {
             if ($this->nodeNameResolver->isName($implement, self::FACTORY_INTERFACE)) {
-                unset($node->implements[$key]);
+                unset($class->implements[$key]);
             }
         }
+    }
 
-        $this->replaceInteropParam($node);
-
-        $params = $invokeMethod->getParams();
+    private function replaceInvokeClassMethodParams(ClassMethod $classMethod): void
+    {
+        $params = $classMethod->getParams();
         foreach (array_keys($params) as $key) {
             if ($key > 0) {
                 unset($params[$key]);
@@ -101,11 +110,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 
             $params[$key]->type = new FullyQualified('Psr\Container\ContainerInterface');
         }
-        $invokeMethod->params = $params;
-
-        $this->replaceUseInteropStatementOnAutoImportEnabled($node);
-
-        return $node;
+        $classMethod->params = $params;
     }
 
     private function replaceInteropParam(Class_ $class): void
