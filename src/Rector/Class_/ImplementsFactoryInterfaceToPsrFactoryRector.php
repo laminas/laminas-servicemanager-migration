@@ -119,11 +119,6 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
                 return null;
             }
 
-            $parent = $subNode->getAttribute(AttributeKey::PARENT_NODE);
-            if (! $parent instanceof Param || $parent->type !== $subNode) { // edge case, handle use Interop on purpose
-                return null;
-            }
-
             $subNode->parts[0] = 'Psr';
             return $subNode;
         });

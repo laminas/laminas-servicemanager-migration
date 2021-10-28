@@ -13,8 +13,9 @@ class ImplementsRootAbstractFactoryInterfaceCallOtherTypeHintMethod implements F
     {
         $this->verify($container);
     }
-    private function verify(ContainerInterface $container): void
+    private function verify(ContainerInterface $container): ContainerInterface
     {
+        return $container;
     }
 }
 
@@ -34,8 +35,9 @@ class ImplementsRootAbstractFactoryInterfaceCallOtherTypeHintMethod
     {
         $this->verify($container);
     }
-    private function verify(\Psr\Container\ContainerInterface $container): void
+    private function verify(\Psr\Container\ContainerInterface $container): \Psr\Container\ContainerInterface
     {
+        return $container;
     }
 }
 
