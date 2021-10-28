@@ -10,6 +10,7 @@ use PhpParser\Node\Identifier;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Use_;
+use PhpParser\Node\Stmt\UseUse;
 use Rector\Core\Configuration\Option;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -126,6 +127,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 
             $params[$key]->type = new FullyQualified('Psr\Container\ContainerInterface');
         }
+
         $classMethod->params = $params;
     }
 
@@ -141,7 +143,11 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
             }
 
             $uses = $subNode->uses;
-            if (count($uses) > 1) { // skip group
+            if (count($uses) > 1) { // skip group use A\B\C { d, e, f}
+                return false;
+            }
+
+            if (! isset($uses[0]) || ! $uses[0] instanceof UseUse) { // maybe changed by other rector rule? skip
                 return false;
             }
 
