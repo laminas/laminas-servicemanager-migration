@@ -2,7 +2,7 @@
 
 namespace Laminas\ServiceManager;
 
-if (interface_exists('Laminas\ServiceManager\InitializerInterface')) {
+if (interface_exists(InitializerInterface::class)) {
     return;
 }
 

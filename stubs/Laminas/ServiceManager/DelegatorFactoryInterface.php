@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Laminas\ServiceManager;
 
-if (interface_exists('Laminas\ServiceManager\DelegatorFactoryInterface')) {
+if (interface_exists(DelegatorFactoryInterface::class)) {
     return;
 }
 
