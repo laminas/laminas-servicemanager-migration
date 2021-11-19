@@ -26,7 +26,10 @@
     "autoload": {
         "psr-4": {
             "Laminas\\ServiceManager\\Migration\\": "src//"
-        }
+        },
+        "classmap": [
+            "stubs"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
