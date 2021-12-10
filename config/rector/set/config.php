@@ -9,8 +9,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set(RenameClassRector::class)
-        ->call('configure', [[
-        RenameClassRector::OLD_TO_NEW_CLASSES => [
+        ->configure([
             // interop deprecated interop to psr
             'Interop\Container\ContainerInterface' => 'Psr\Container\ContainerInterface',
 
@@ -23,6 +22,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 => 'Laminas\ServiceManager\Factory\DelegatorFactoryInterface',
             'Laminas\ServiceManager\InitializerInterface'
                 => 'Laminas\ServiceManager\Initializer\InitializerInterface',
-        ],
-    ]]);
+        ]);
 };
