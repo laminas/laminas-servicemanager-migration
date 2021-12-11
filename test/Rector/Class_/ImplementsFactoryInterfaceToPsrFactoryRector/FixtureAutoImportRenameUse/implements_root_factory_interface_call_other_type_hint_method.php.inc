@@ -27,15 +27,16 @@ declare(strict_types=1);
 
 namespace LaminasTest\ServiceManager\Migration\Rector\Class_\FixtureAutoImportRenameUse\Fixture;
 
+use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class ImplementsRootAbstractFactoryInterfaceCallOtherTypeHintMethod
 {
-    public function __invoke(\Psr\Container\ContainerInterface $container)
+    public function __invoke(ContainerInterface $container)
     {
         $this->verify($container);
     }
-    private function verify(\Psr\Container\ContainerInterface $container): \Psr\Container\ContainerInterface
+    private function verify(ContainerInterface $container): ContainerInterface
     {
         return $container;
     }
