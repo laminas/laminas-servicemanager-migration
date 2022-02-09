@@ -3,6 +3,7 @@ site_dir: docs/html
 nav:
     - Home: index.md
     - Introduction: v1/intro.md
+    - Migrate Implements FactoryInterface to use Psr Container: v1/migrate-implements-factory-interface-to-use-psr-container.md
 site_name: 'laminas-servicemanager-migration'
 site_description: 'Migrate your code to laminas-servicemanager 4.x compatibility utilizing Rector rules.'
 repo_url: 'https://github.com/laminas/laminas-servicemanager-migration'
