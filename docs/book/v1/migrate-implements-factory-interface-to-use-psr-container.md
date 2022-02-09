@@ -50,10 +50,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::PATHS, [__DIR__ . '/module']);
 
      // register ImplementsFactoryInterfaceToPsrFactoryRector service
+    $services = $containerConfigurator->services();
     $services->set(
         \Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector::class
     );
-    $services = $containerConfigurator->services();
 };
 ```
 
@@ -74,11 +74,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
     $parameters->set(Option::PATHS, [__DIR__ . '/module']);
 
-     // register ImplementsFactoryInterfaceToPsrFactoryRector service
+    // register ImplementsFactoryInterfaceToPsrFactoryRector service
+    $services = $containerConfigurator->services();
     $services->set(
         \Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector::class
     );
-    $services = $containerConfigurator->services();
 };
 ```
 
