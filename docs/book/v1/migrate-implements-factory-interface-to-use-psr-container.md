@@ -93,4 +93,3 @@ Ensure that the change is correct, if everything ok, you can run the fix:
 ```bash
 vendor/bin/rector process
 ```
-
