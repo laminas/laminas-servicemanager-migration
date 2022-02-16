@@ -32,13 +32,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 };
 ```
 
-Above, the `Option::PATHS` is paths you want rector to run. After configuration in place, you can run:
+Above, the `Option::PATHS` is paths we want rector to run. After configuration in place, you can run:
 
 ```bash
 vendor/bin/rector process --dry-run
 ```
 
-Ensure that the change is correct, if everything ok, you can run the fix:
+Ensure that the change is correct, if everything ok, we can run the fix:
 
 ```bash
 vendor/bin/rector process
