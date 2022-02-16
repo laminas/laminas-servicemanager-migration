@@ -6,7 +6,7 @@ use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\ServiceManager\AbstractFactoryInterface;
 
-class ImplementsRootAbstractFactoryInterface implements AbstractFactoryInterface
+class ServiceFactory implements AbstractFactoryInterface
 {
     public function canCreateServiceWithName(ServiceLocatorInterface $locator, $name, $requestedName)
     {
@@ -35,7 +35,7 @@ use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
-class ImplementsRootAbstractFactoryInterface implements AbstractFactoryInterface
+class ServiceFactory implements AbstractFactoryInterface
 {
     public function canCreateServiceWithName(ServiceLocatorInterface $locator, $name, $requestedName)
     {

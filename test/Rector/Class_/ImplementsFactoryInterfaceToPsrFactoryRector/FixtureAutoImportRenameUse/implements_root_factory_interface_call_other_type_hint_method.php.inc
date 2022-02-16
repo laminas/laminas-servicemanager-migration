@@ -7,7 +7,7 @@ namespace LaminasTest\ServiceManager\Migration\Rector\Class_\FixtureAutoImportRe
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 
-class ImplementsRootAbstractFactoryInterfaceCallOtherTypeHintMethod implements FactoryInterface
+class ServiceFactoryCallOtherTypeHintMethod implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
@@ -30,7 +30,7 @@ namespace LaminasTest\ServiceManager\Migration\Rector\Class_\FixtureAutoImportRe
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 
-class ImplementsRootAbstractFactoryInterfaceCallOtherTypeHintMethod
+class ServiceFactoryCallOtherTypeHintMethod
 {
     public function __invoke(ContainerInterface $container)
     {

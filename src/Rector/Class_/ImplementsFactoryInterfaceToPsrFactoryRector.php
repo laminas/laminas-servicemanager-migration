@@ -26,7 +26,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
                 <<<'CODE_SAMPLE'
                 use Interop\Container\ContainerInterface;
 
-                class ImplementsRootAbstractFactoryInterface implements FactoryInterface
+                class ServiceFactory implements FactoryInterface
                 {
                     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
                     {
@@ -36,7 +36,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
                 CODE_SAMPLE
                 ,
                 <<<'CODE_SAMPLE'
-                class ImplementsRootAbstractFactoryInterface
+                class ServiceFactory
                 {
                     public function __invoke(\Psr\Container\ContainerInterface $container)
                     {
