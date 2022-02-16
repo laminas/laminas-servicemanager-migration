@@ -5,10 +5,6 @@
 To use with rector, you can create the following `rector.php`:
 
 ```php
-<?php
-// rector.php
-declare(strict_types=1);
-
 use Rector\Core\Configuration\Option;
 use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -24,10 +20,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 If you want to make renamed class type hint auto import enabled, you may use `SetList::LAMINAS_SERVICEMANGER_40_AUTO_IMPORT` set list, so the `rector.php` config will be as follow:
 
 ```php
-<?php
-// rector.php
-declare(strict_types=1);
-
 use Rector\Core\Configuration\Option;
 use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;

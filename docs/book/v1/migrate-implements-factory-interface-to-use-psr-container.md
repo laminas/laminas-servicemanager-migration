@@ -35,10 +35,6 @@ class ImplementsRootAbstractFactoryInterface
 What we need to do is register rector rule: `Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector` to our `rector.php` as an individual service:
 
 ```php
-<?php
-// rector.php
-declare(strict_types=1);
-
 use Rector\Core\Configuration\Option;
 use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -60,10 +56,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 If we want to auto import, we can use `LAMINAS_SERVICEMANGER_40_AUTO_IMPORT`:
 
 ```php
-<?php
-// rector.php
-declare(strict_types=1);
-
 use Rector\Core\Configuration\Option;
 use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
