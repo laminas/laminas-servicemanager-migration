@@ -57,7 +57,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         \Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector::class
     );
 };
-```
+</code></pre>
+<!-- markdownlint-restore -->
 
 If we want to auto import, we can use `LAMINAS_SERVICEMANGER_40_AUTO_IMPORT`:
 
