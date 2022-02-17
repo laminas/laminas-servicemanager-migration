@@ -97,25 +97,34 @@ vendor/bin/rector process
 
 ## Additional Adjustment
 
-- Add Return type for the service, for example, from the following:
+### Add Return Type to Factory
+
+To add return type by new instance creation, the standard Rector rule [`ReturnTypeFromReturnNewRector`](https://github.com/rectorphp/rector/blob/main/docs/rector_rules_overview.md#returntypefromreturnnewrector) can be used.
+
+Register the rule in `rector.php`:
 
 <!-- markdownlint-disable MD033 -->
-<pre class="language-php" data-line="7"><code>
-use My\Service;
-use Psr\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\FactoryInterface;
+<pre class="language-php" data-line="15"><code>
+use Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector;
+use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
+use Rector\Core\Configuration\Option;
+use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromReturnNewRector;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-class ServiceFactory
-{
-    public function __invoke(ContainerInterface $container)
-    {
-        return new Service();
-    }
-}
+return static function (ContainerConfigurator $containerConfigurator): void {
+    $containerConfigurator->import(SetList::LAMINAS_SERVICEMANGER_40_AUTO_IMPORT);
+
+    $parameters = $containerConfigurator->parameters();
+    $parameters->set(Option::PATHS, [__DIR__ . '/module']);
+
+    $services = $containerConfigurator->services();
+    $services->set(ImplementsFactoryInterfaceToPsrFactoryRector::class);
+    $services->set(ReturnTypeFromReturnNewRector::class);
+};
 </code></pre>
 <!-- markdownlint-restore -->
 
-to have return type:
+Result:
 
 <!-- markdownlint-disable MD033 -->
 <pre class="language-php" data-line="7"><code>
@@ -132,7 +141,5 @@ class ServiceFactory
 }
 </code></pre>
 <!-- markdownlint-restore -->
-
-To add return type by new instance creation like above, we can use [`ReturnTypeFromReturnNewRector` TypeDeclaration rule](https://github.com/rectorphp/rector/blob/main/docs/rector_rules_overview.md#returntypefromreturnnewrector).
 
 - Sort use statement, to sort it, we may require coding style tool for it, for example: [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) or [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
