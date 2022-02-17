@@ -142,6 +142,6 @@ class ServiceFactory
 </code></pre>
 <!-- markdownlint-restore -->
 
-### Sort use statement
+### Sort Use Statements
 
-To sort it, we may require coding style tool for it, for example: [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) or [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+To sort the `use` statements for the factory a coding style tool can be used, for example: [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) with [Slevomat Coding Standard](https://github.com/slevomat/coding-standard#slevomatcodingstandardnamespacesalphabeticallysorteduses-).
