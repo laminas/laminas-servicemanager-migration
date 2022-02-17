@@ -97,9 +97,28 @@ vendor/bin/rector process
 
 ## Additional Adjustment
 
-- Add Return type for the service, for example:
+- Add Return type for the service, for example, from the following:
 
-```php
+<!-- markdownlint-disable MD033 -->
+<pre class="language-php" data-line="7"><code>
+use My\Service;
+use Psr\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+
+class ServiceFactory
+{
+    public function __invoke(ContainerInterface $container)
+    {
+        return new Service();
+    }
+}
+</code></pre>
+<!-- markdownlint-restore -->
+
+to have return type:
+
+<!-- markdownlint-disable MD033 -->
+<pre class="language-php" data-line="7"><code>
 use My\Service;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
@@ -111,8 +130,9 @@ class ServiceFactory
         return new Service();
     }
 }
-```
+</code></pre>
+<!-- markdownlint-restore -->
 
-For add return type by new instance creation, we can use [`ReturnTypeFromReturnNewRector` TypeDeclaration rule](https://github.com/rectorphp/rector/blob/main/docs/rector_rules_overview.md#returntypefromreturnnewrector).
+To add return type by new instance creation like above, we can use [`ReturnTypeFromReturnNewRector` TypeDeclaration rule](https://github.com/rectorphp/rector/blob/main/docs/rector_rules_overview.md#returntypefromreturnnewrector).
 
 - Sort use statement, to sort it, we may require coding style tool for it, for example: [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) or [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
