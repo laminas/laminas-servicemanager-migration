@@ -79,7 +79,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         \Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector::class
     );
 };
-```
+</code></pre>
+<!-- markdownlint-restore -->
 
 After configuration in place, we can run:
 
