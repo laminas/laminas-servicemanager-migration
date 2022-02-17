@@ -39,7 +39,8 @@ The steps to apply the changes are:
 
 To apply that, we can register rector rule: `Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector` to our `rector.php` as an individual service:
 
-```php
+<!-- markdownlint-disable MD033 -->
+<pre class="language-php" data-line="11-15"><code>
 use Rector\Core\Configuration\Option;
 use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
