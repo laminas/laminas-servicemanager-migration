@@ -62,7 +62,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
 If we want to auto import, we can use `LAMINAS_SERVICEMANGER_40_AUTO_IMPORT`:
 
-```php
+<!-- markdownlint-disable MD033 -->
+<pre class="language-php" data-line="6"><code>
 use Rector\Core\Configuration\Option;
 use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
