@@ -62,10 +62,10 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
             return null;
         }
 
+        /**
+         * @var ClassMethod $invokeMethod
+         */
         $invokeMethod = $node->getMethod('__invoke');
-        if (! $invokeMethod instanceof ClassMethod) {
-            return null;
-        }
 
         $this->removeFactoryInterfaceFromImplements($node);
         $this->replaceInteropParam($node);
@@ -84,11 +84,36 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
             }
 
             if ($this->nodeNameResolver->isName($implement, self::FACTORY_INTERFACE)) {
-                return false;
+                return $this->doesNotHasInvokeMethodOrRequestedNameOrOptionsParamUsed($node);
             }
         }
 
         return true;
+    }
+
+    private function doesNotHasInvokeMethodOrRequestedNameOrOptionsParamUsed(Class_ $class): bool
+    {
+        $invoke = $class->getMethod('__invoke');
+
+        if (! $invoke instanceof ClassMethod) {
+            return true;
+        }
+
+        $params = $invoke->getParams();
+        foreach ($params as $key => $param) {
+            if ($key > 0) {
+                $isUsed = (bool) $this->betterNodeFinder->findFirstInFunctionLikeScoped(
+                    $invoke,
+                    fn (Node $subNode): bool => $this->nodeComparator->areNodesEqual($subNode, $param->var)
+                );
+
+                if ($isUsed) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     private function removeFactoryInterfaceFromImplements(Class_ $class): void
