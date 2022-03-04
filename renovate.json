@@ -2,5 +2,8 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>laminas/.github:renovate-config"
+  ],
+  "packageRules": [
+    {"matchPackageNames": ["rector/rector"], "rangeStrategy": "pin"}
   ]
 }
