@@ -4,6 +4,6 @@
     "local>laminas/.github:renovate-config"
   ],
   "packageRules": [
-    {"matchPackageNames": ["rector/rector"], "rangeStrategy": "pin"}
+    {"matchPackageNames": ["rector/rector"], "rangeStrategy": "pin", "automergeType": "pr"}
   ]
 }
