@@ -12,12 +12,20 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Use_;
 use PhpParser\Node\Stmt\UseUse;
 use Rector\Core\Configuration\Option;
+use Rector\Core\Configuration\RectorConfigProvider;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 {
     private const FACTORY_INTERFACE = FactoryInterface::class;
+
+    private RectorConfigProvider $rectorConfigProvider;
+
+    public function __construct(RectorConfigProvider $rectorConfigProvider)
+    {
+        $this->rectorConfigProvider = $rectorConfigProvider;
+    }
 
     public function getRuleDefinition(): RuleDefinition
     {
@@ -158,7 +166,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 
     private function replaceUseInteropStatementOnAutoImportEnabled(Class_ $class): void
     {
-        if (! $this->parameterProvider->provideBoolParameter(Option::AUTO_IMPORT_NAMES)) {
+        if (! $this->rectorConfigProvider->shouldImportNames(Option::AUTO_IMPORT_NAMES)) {
             return;
         }
 
