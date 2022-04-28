@@ -40,20 +40,16 @@ The steps to apply the changes are:
 To apply that, we can register rector rule: `Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector` to our `rector.php` as an individual service:
 
 <!-- markdownlint-disable MD033 -->
-<pre class="language-php" data-line="11-15"><code>
-use Rector\Core\Configuration\Option;
+<pre class="language-php" data-line="8-11"><code>
 use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Rector\Config\RectorConfig;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(SetList::LAMINAS_SERVICEMANGER_40);
-
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [__DIR__ . '/module']);
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->sets([SetList::LAMINAS_SERVICEMANGER_40]);
+    $rectorConfig->paths([__DIR__ . '/module']);
 
      // register ImplementsFactoryInterfaceToPsrFactoryRector service
-    $services = $containerConfigurator->services();
-    $services->set(
+    $rectorConfig->rule(
         \Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector::class
     );
 };
@@ -63,20 +59,16 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 If we want to auto import, we can use `LAMINAS_SERVICEMANGER_40_AUTO_IMPORT`:
 
 <!-- markdownlint-disable MD033 -->
-<pre class="language-php" data-line="6"><code>
-use Rector\Core\Configuration\Option;
+<pre class="language-php" data-line="5"><code>
 use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Rector\Config\RectorConfig;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(SetList::LAMINAS_SERVICEMANGER_40_AUTO_IMPORT);
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->sets([SetList::LAMINAS_SERVICEMANGER_40_AUTO_IMPORT]);
+    $rectorConfig->paths([__DIR__ . '/module']);
 
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [__DIR__ . '/module']);
-
-    // register ImplementsFactoryInterfaceToPsrFactoryRector service
-    $services = $containerConfigurator->services();
-    $services->set(
+     // register ImplementsFactoryInterfaceToPsrFactoryRector service
+    $rectorConfig->rule(
         \Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector::class
     );
 };
@@ -104,22 +96,18 @@ To add return type by new instance creation, the standard Rector rule [`ReturnTy
 Register the rule in `rector.php`:
 
 <!-- markdownlint-disable MD033 -->
-<pre class="language-php" data-line="15"><code>
+<pre class="language-php" data-line="11"><code>
 use Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector;
 use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
-use Rector\Core\Configuration\Option;
+use Rector\Config\RectorConfig;
 use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromReturnNewRector;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(SetList::LAMINAS_SERVICEMANGER_40_AUTO_IMPORT);
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->sets([SetList::LAMINAS_SERVICEMANGER_40_AUTO_IMPORT]);
+    $rectorConfig->paths([__DIR__ . '/module']);
 
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [__DIR__ . '/module']);
-
-    $services = $containerConfigurator->services();
-    $services->set(ImplementsFactoryInterfaceToPsrFactoryRector::class);
-    $services->set(ReturnTypeFromReturnNewRector::class);
+    $rectorConfig->rule(ImplementsFactoryInterfaceToPsrFactoryRector::class);
+    $rectorConfig->rule(ReturnTypeFromReturnNewRector::class);
 };
 </code></pre>
 <!-- markdownlint-restore -->
