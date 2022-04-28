@@ -2,14 +2,10 @@
 
 declare(strict_types=1);
 
-use Rector\Core\Configuration\Option;
+use Rector\Config\RectorConfig;
 use Laminas\ServiceManager\Migration\Rector\Class_\ImplementsFactoryInterfaceToPsrFactoryRector;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $services = $containerConfigurator->services();
-    $services->set(ImplementsFactoryInterfaceToPsrFactoryRector::class);
-
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::AUTO_IMPORT_NAMES, true);
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->rule(ImplementsFactoryInterfaceToPsrFactoryRector::class);
+    $rectorConfig->importNames();
 };

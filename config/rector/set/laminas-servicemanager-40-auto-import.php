@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-use Rector\Core\Configuration\Option;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Rector\Config\RectorConfig;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(__DIR__ . '/config.php');
-
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::AUTO_IMPORT_NAMES, true);
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->sets([__DIR__ . '/config.php']);
+    $rectorConfig->importNames();
 };
