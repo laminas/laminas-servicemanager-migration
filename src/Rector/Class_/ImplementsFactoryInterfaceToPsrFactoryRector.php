@@ -170,7 +170,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
             return;
         }
 
-        $use = $this->betterNodeFinder->findFirstPreviousOfNode($class, function (Node $subNode): bool {
+        $use = $this->betterNodeFinder->findFirstPrevious($class, function (Node $subNode): bool {
             if (! $subNode instanceof Use_) {
                 return false;
             }
