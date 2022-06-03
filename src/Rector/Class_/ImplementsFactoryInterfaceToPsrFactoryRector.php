@@ -9,10 +9,9 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Stmt\ClassMethod;
-use PhpParser\Node\Stmt\Use_;
 use PhpParser\Node\Stmt\UseUse;
-use Rector\Core\Configuration\Option;
 use Rector\Core\Configuration\RectorConfigProvider;
+use Rector\Naming\Naming\UseImportsResolver;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -21,10 +20,14 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
     private const FACTORY_INTERFACE = FactoryInterface::class;
 
     private RectorConfigProvider $rectorConfigProvider;
+    private UseImportsResolver $useImportsResolver;
 
-    public function __construct(RectorConfigProvider $rectorConfigProvider)
-    {
+    public function __construct(
+        RectorConfigProvider $rectorConfigProvider,
+        UseImportsResolver $useImportsResolver
+    ) {
         $this->rectorConfigProvider = $rectorConfigProvider;
+        $this->useImportsResolver = $useImportsResolver;
     }
 
     public function getRuleDefinition(): RuleDefinition
@@ -166,33 +169,28 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 
     private function replaceUseInteropStatementOnAutoImportEnabled(Class_ $class): void
     {
-        if (! $this->rectorConfigProvider->shouldImportNames(Option::AUTO_IMPORT_NAMES)) {
+        if (! $this->rectorConfigProvider->shouldImportNames()) {
             return;
         }
 
-        $use = $this->betterNodeFinder->findFirstPrevious($class, function (Node $subNode): bool {
-            if (! $subNode instanceof Use_) {
-                return false;
+        $uses = $this->useImportsResolver->resolveBareUsesForNode($class);
+
+        foreach ($uses as $use) {
+            /** @var UseUse|false $useUse */
+            $useUse = current($use->uses);
+
+            if (! $useUse instanceof UseUse) {
+                continue;
             }
 
-            $uses = $subNode->uses;
-            if (count($uses) > 1) { // skip group use A\B\C { d, e, f}
-                return false;
+            if ($useUse->alias instanceof Identifier) {
+                continue;
             }
 
-            if (! isset($uses[0]) || ! $uses[0] instanceof UseUse) { // maybe changed by other rector rule? skip
-                return false;
+            if ($useUse->name->toString() === 'Interop\Container\ContainerInterface') {
+                $this->removeNode($use);
+                break;
             }
-
-            if ($uses[0]->alias instanceof Identifier) {
-                return false;
-            }
-
-            return $uses[0]->name->toString() === 'Interop\Container\ContainerInterface';
-        });
-
-        if ($use instanceof Use_) {
-            $this->removeNode($use);
         }
     }
 }
