@@ -9,7 +9,7 @@
         </include>
     </coverage>
     <testsuites>
-        <testsuite name="laminas-eventmanager Test Suite">
+        <testsuite name="laminas-servicemanager-migration Test Suite">
             <directory>./test/</directory>
         </testsuite>
     </testsuites>
