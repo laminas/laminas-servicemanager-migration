@@ -19,15 +19,10 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 {
     private const FACTORY_INTERFACE = FactoryInterface::class;
 
-    private RectorConfigProvider $rectorConfigProvider;
-    private UseImportsResolver $useImportsResolver;
-
     public function __construct(
-        RectorConfigProvider $rectorConfigProvider,
-        UseImportsResolver $useImportsResolver
+        private RectorConfigProvider $rectorConfigProvider,
+        private UseImportsResolver $useImportsResolver
     ) {
-        $this->rectorConfigProvider = $rectorConfigProvider;
-        $this->useImportsResolver = $useImportsResolver;
     }
 
     public function getRuleDefinition(): RuleDefinition
