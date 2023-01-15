@@ -14,7 +14,15 @@ return static function (RectorConfig $rectorConfig): void {
 };
 ```
 
-If you want to make renamed class type hint auto import enabled, you may use `SetList::LAMINAS_SERVICEMANGER_40_AUTO_IMPORT` set list, so the `rector.php` config will be as follow:
+Rector works with all class names as fully qualified by default.In the most projects, that's not a desired behavior, because short version with use statement is easier to read.
+
+To import FQCN, configure rector.php with:
+
+```php
+$rectorConfig->importNames();
+```
+
+If you want to make renamed class type hint to use short name with import its fully qualified ot use statement, you may use `SetList::LAMINAS_SERVICEMANGER_40_AUTO_IMPORT` set list that utilize `$rectorConfig->importNames()` on it, so the `rector.php` config will be as follow:
 
 ```php
 use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
