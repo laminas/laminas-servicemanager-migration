@@ -2,7 +2,15 @@
 
 ## About Rector
 
-Rector is a PHP tool that you can run on any PHP project to get instant upgrade or automated refactoring. It helps with PHP upgrade, framework upgrade and improves your code quality. Also it helps with type-coverage and help to get to the latest PHPStan level.
+Rector is a console application for automated refactoring of PHP applications.
+It helps with:
+
+- PHP upgrades
+- Framework upgrades
+- Code quality improvements
+- Type coverage
+
+For more information about Rector, visit: [getrector.org](https://getrector.org)
 
 ## Using with Rector
 
