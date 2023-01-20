@@ -1,8 +1,20 @@
-# laminas-servicemanager-migration
+# Introduction
+
+## About Rector
+
+Rector is a console application for automated refactoring of PHP applications.
+It helps with:
+
+- PHP upgrades
+- Framework upgrades
+- Code quality improvements
+- Type coverage
+
+For more information about Rector, visit: [getrector.org](https://getrector.org)
 
 ## Using with Rector
 
-To use with rector, you can create the following `rector.php`:
+To use with Rector, you can create the following `rector.php`:
 
 ```php
 use Laminas\ServiceManager\Migration\Rector\Set\ValueObject\SetList;
