@@ -170,8 +170,9 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
         $classMethod->params = $params;
     }
 
-    private function replaceUseInteropStatementOnAutoImportEnabled(FileWithoutNamespace|Namespace_ $namespace): FileWithoutNamespace|Namespace_|null
-    {
+    private function replaceUseInteropStatementOnAutoImportEnabled(
+        FileWithoutNamespace|Namespace_ $namespace
+    ): FileWithoutNamespace|Namespace_|null {
         if (! $this->rectorConfigProvider->shouldImportNames()) {
             return null;
         }
