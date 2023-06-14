@@ -8,10 +8,15 @@ use Rector\Core\Rector\AbstractRector;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name\FullyQualified;
+use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\ClassMethod;
+use PhpParser\Node\Stmt\Namespace_;
+use PhpParser\Node\Stmt\Use_;
 use PhpParser\Node\Stmt\UseUse;
 use Rector\Core\Configuration\RectorConfigProvider;
+use Rector\Core\PhpParser\Node\CustomNode\FileWithoutNamespace;
 use Rector\Naming\Naming\UseImportsResolver;
+use Rector\NodeTypeResolver\Node\AttributeKey;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
@@ -56,14 +61,18 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 
     public function getNodeTypes(): array
     {
-        return [Class_::class];
+        return [Class_::class, FileWithoutNamespace::class, Namespace_::class];
     }
 
     /**
-     * @param Class_ $node
+     * @param Class_|FileWithoutNamespace|Namespace_ $node
      */
     public function refactor(Node $node): ?Node
     {
+        if ($node instanceof FileWithoutNamespace || $node instanceof Namespace_) {
+            return $this->replaceUseInteropStatementOnAutoImportEnabled($node);
+        }
+
         if ($this->shouldSkip($node)) {
             return null;
         }
@@ -76,7 +85,6 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
         $this->removeFactoryInterfaceFromImplements($node);
         $this->replaceInteropParam($node);
         $this->replaceInvokeClassMethodParams($invokeMethod);
-        $this->replaceUseInteropStatementOnAutoImportEnabled($node);
 
         return $node;
     }
@@ -162,13 +170,15 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
         $classMethod->params = $params;
     }
 
-    private function replaceUseInteropStatementOnAutoImportEnabled(Class_ $class): void
-    {
+    private function replaceUseInteropStatementOnAutoImportEnabled(
+        FileWithoutNamespace|Namespace_ $namespace
+    ): FileWithoutNamespace|Namespace_|null {
         if (! $this->rectorConfigProvider->shouldImportNames()) {
-            return;
+            return null;
         }
 
-        $uses = $this->useImportsResolver->resolveBareUsesForNode($class);
+        /** @var Use_[] $uses */
+        $uses = array_filter($namespace->stmts, fn (Stmt $stmt): bool => $stmt instanceof Use_);
 
         foreach ($uses as $use) {
             /** @var UseUse|false $useUse */
@@ -183,9 +193,13 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
             }
 
             if ($useUse->name->toString() === 'Interop\Container\ContainerInterface') {
-                $this->removeNode($use);
-                break;
+                $stmtKey = $use->getAttribute(AttributeKey::STMT_KEY);
+                unset($namespace->stmts[$stmtKey]);
+
+                return $namespace;
             }
         }
+
+        return null;
     }
 }
