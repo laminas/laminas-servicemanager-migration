@@ -13,7 +13,8 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Use_;
 use PhpParser\Node\Stmt\UseUse;
-use Rector\Core\Configuration\RectorConfigProvider;
+use Rector\Core\Configuration\Option;
+use Rector\Core\Configuration\Parameter\SimpleParameterProvider;
 use Rector\Core\PhpParser\Node\CustomNode\FileWithoutNamespace;
 use Rector\Naming\Naming\UseImportsResolver;
 use Rector\NodeTypeResolver\Node\AttributeKey;
@@ -25,7 +26,6 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
     private const FACTORY_INTERFACE = FactoryInterface::class;
 
     public function __construct(
-        private RectorConfigProvider $rectorConfigProvider,
         private UseImportsResolver $useImportsResolver
     ) {
     }
@@ -173,7 +173,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
     private function replaceUseInteropStatementOnAutoImportEnabled(
         FileWithoutNamespace|Namespace_ $namespace
     ): FileWithoutNamespace|Namespace_|null {
-        if (! $this->rectorConfigProvider->shouldImportNames()) {
+        if (! SimpleParameterProvider::provideBoolParameter(Option::AUTO_IMPORT_NAMES)) {
             return null;
         }
 
