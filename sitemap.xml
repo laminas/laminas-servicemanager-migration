@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.laminas.dev/laminas-servicemanager-migration/</loc>
-         <lastmod>2023-08-28</lastmod>
+         <lastmod>2023-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.laminas.dev/laminas-servicemanager-migration/v1/intro/</loc>
-         <lastmod>2023-08-28</lastmod>
+         <lastmod>2023-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.laminas.dev/laminas-servicemanager-migration/v1/migrate-implements-factory-interface-to-use-psr-container/</loc>
-         <lastmod>2023-08-28</lastmod>
+         <lastmod>2023-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
