@@ -15,6 +15,7 @@ use PhpParser\Node\Stmt\Use_;
 use PhpParser\Node\Stmt\UseUse;
 use Rector\Core\Configuration\Option;
 use Rector\Core\Configuration\Parameter\SimpleParameterProvider;
+use Rector\Core\PhpParser\Node\BetterNodeFinder;
 use Rector\Core\PhpParser\Node\CustomNode\FileWithoutNamespace;
 use Rector\Naming\Naming\UseImportsResolver;
 use Rector\NodeTypeResolver\Node\AttributeKey;
@@ -26,7 +27,8 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
     private const FACTORY_INTERFACE = FactoryInterface::class;
 
     public function __construct(
-        private UseImportsResolver $useImportsResolver
+        private UseImportsResolver $useImportsResolver,
+        private BetterNodeFinder $betterNodeFinder
     ) {
     }
 
