@@ -16,7 +16,6 @@ use Rector\Configuration\Option;
 use Rector\Configuration\Parameter\SimpleParameterProvider;
 use Rector\PhpParser\Node\BetterNodeFinder;
 use Rector\PhpParser\Node\CustomNode\FileWithoutNamespace;
-use Rector\Naming\Naming\UseImportsResolver;
 use Rector\NodeTypeResolver\Node\AttributeKey;
 use Rector\Rector\AbstractRector;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
@@ -27,7 +26,6 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
     private const FACTORY_INTERFACE = FactoryInterface::class;
 
     public function __construct(
-        private UseImportsResolver $useImportsResolver,
         private BetterNodeFinder $betterNodeFinder
     ) {
     }
