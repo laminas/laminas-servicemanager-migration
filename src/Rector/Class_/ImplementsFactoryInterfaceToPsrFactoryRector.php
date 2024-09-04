@@ -150,8 +150,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
                 return null;
             }
 
-            $subNode->parts[0] = 'Psr';
-            return $subNode;
+            return new FullyQualified('Psr\Container\ContainerInterface');
         });
     }
 
