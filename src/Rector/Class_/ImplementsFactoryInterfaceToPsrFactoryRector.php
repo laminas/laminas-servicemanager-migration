@@ -11,7 +11,7 @@ use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Use_;
-use PhpParser\Node\Stmt\UseUse;
+use PhpParser\Node\UseItem;
 use Rector\Configuration\Option;
 use Rector\Configuration\Parameter\SimpleParameterProvider;
 use Rector\PhpParser\Node\BetterNodeFinder;
@@ -180,10 +180,10 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
         $uses = array_filter($namespace->stmts, fn (Stmt $stmt): bool => $stmt instanceof Use_);
 
         foreach ($uses as $use) {
-            /** @var UseUse|false $useUse */
+            /** @var UseItem|false $useUse */
             $useUse = current($use->uses);
 
-            if (! $useUse instanceof UseUse) {
+            if (! $useUse instanceof UseItem) {
                 continue;
             }
 
