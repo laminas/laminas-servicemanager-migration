@@ -17,9 +17,9 @@ final class AutoImportRenameUseTest extends AbstractRectorTestCase
         $this->doTestFile($filePath);
     }
 
-    public function provideData(): Iterator
+    public static function provideData(): Iterator
     {
-        return $this->yieldFilesFromDirectory(__DIR__ . '/FixtureAutoImportRenameUse');
+        return self::yieldFilesFromDirectory(__DIR__ . '/FixtureAutoImportRenameUse');
     }
 
     public function provideConfigFilePath(): string

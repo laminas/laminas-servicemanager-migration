@@ -16,9 +16,9 @@ final class CombineWithSetListAutoImportTest extends AbstractRectorTestCase
     {
         $this->doTestFile($filePath);
     }
-    public function provideData(): Iterator
+    public static function provideData(): Iterator
     {
-        return $this->yieldFilesFromDirectory(__DIR__ . '/FixtureCombineWithSetListAutoImport');
+        return self::yieldFilesFromDirectory(__DIR__ . '/FixtureCombineWithSetListAutoImport');
     }
 
     public function provideConfigFilePath(): string
