@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a03222e1edb08516a3cb722382808f2c",
+    "content-hash": "47410aa1bfe93e843796774b582e4605",
     "packages": [
         {
             "name": "phpstan/phpstan",
@@ -293,8 +293,8 @@
             "type": "library",
             "extra": {
                 "laminas": {
-                    "config-provider": "Laminas\\ServiceManager\\ConfigProvider",
-                    "module": "Laminas\\ServiceManager"
+                    "module": "Laminas\\ServiceManager",
+                    "config-provider": "Laminas\\ServiceManager\\ConfigProvider"
                 }
             },
             "autoload": {
@@ -2201,7 +2201,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "~8.1.0 || ~8.2.0 || ~8.3.0"
+        "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 "
     },
     "platform-dev": {},
     "platform-overrides": {
