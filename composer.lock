@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b8d8986b782e23d423499735334b416e",
+    "content-hash": "11abcc3a697fd899e5cda05b136bf69d",
     "packages": [
         {
             "name": "phpstan/phpstan",
@@ -66,16 +66,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "2.0.6",
+            "version": "2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "fa0cb009dc3df084bf549032ae4080a0481a2036"
+                "reference": "e70d681f6a0c361a63e6825897cd97746436f015"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/fa0cb009dc3df084bf549032ae4080a0481a2036",
-                "reference": "fa0cb009dc3df084bf549032ae4080a0481a2036",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/e70d681f6a0c361a63e6825897cd97746436f015",
+                "reference": "e70d681f6a0c361a63e6825897cd97746436f015",
                 "shasum": ""
             },
             "require": {
@@ -113,7 +113,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/2.0.6"
+                "source": "https://github.com/rectorphp/rector/tree/2.0.7"
             },
             "funding": [
                 {
@@ -121,7 +121,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-06T10:38:36+00:00"
+            "time": "2025-01-19T09:41:28+00:00"
         }
     ],
     "packages-dev": [
