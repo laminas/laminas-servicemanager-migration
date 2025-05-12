@@ -97,7 +97,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
                 continue;
             }
 
-            if ($this->nodeNameResolver->isName($implement, self::FACTORY_INTERFACE)) {
+            if ($this->isName($implement, self::FACTORY_INTERFACE)) {
                 return $this->doesNotHasInvokeMethodOrRequestedNameOrOptionsParamUsed($node);
             }
         }
@@ -133,7 +133,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
     private function removeFactoryInterfaceFromImplements(Class_ $class): void
     {
         foreach ($class->implements as $key => $implement) {
-            if ($this->nodeNameResolver->isName($implement, self::FACTORY_INTERFACE)) {
+            if ($this->isName($implement, self::FACTORY_INTERFACE)) {
                 unset($class->implements[$key]);
             }
         }
@@ -146,7 +146,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
                 return null;
             }
 
-            if (! $this->nodeNameResolver->isName($subNode, 'Interop\Container\ContainerInterface')) {
+            if (! $this->isName($subNode, 'Interop\Container\ContainerInterface')) {
                 return null;
             }
 
