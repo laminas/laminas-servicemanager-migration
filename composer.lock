@@ -4,24 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5272fd1086adb06b93721a842f0ef42",
+    "content-hash": "c0a0532fcd71947bfeec966379ea35dc",
     "packages": [
         {
             "name": "phpstan/phpstan",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "cbe085f9fdead5b6d62e4c022ca52dc9427a10ee"
-            },
+            "version": "2.1.30",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/cbe085f9fdead5b6d62e4c022ca52dc9427a10ee",
-                "reference": "cbe085f9fdead5b6d62e4c022ca52dc9427a10ee",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a4a7f159927983dd4f7c8020ed227d80b7f39d7d",
+                "reference": "a4a7f159927983dd4f7c8020ed227d80b7f39d7d",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1|^8.0"
+                "php": "^7.4|^8.0"
             },
             "conflict": {
                 "phpstan/phpstan-shim": "*"
@@ -31,11 +26,6 @@
                 "phpstan.phar"
             ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2-dev"
-                }
-            },
             "autoload": {
                 "files": [
                     "bootstrap.php"
@@ -46,9 +36,16 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
+            "keywords": [
+                "dev",
+                "static analysis"
+            ],
             "support": {
+                "docs": "https://phpstan.org/user-guide/getting-started",
+                "forum": "https://github.com/phpstan/phpstan/discussions",
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.2.0"
+                "security": "https://github.com/phpstan/phpstan/security/policy",
+                "source": "https://github.com/phpstan/phpstan-src"
             },
             "funding": [
                 {
@@ -58,56 +55,41 @@
                 {
                     "url": "https://github.com/phpstan",
                     "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/phpstan",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/phpstan/phpstan",
-                    "type": "tidelift"
                 }
             ],
-            "time": "2021-11-18T14:09:01+00:00"
+            "time": "2025-10-02T16:07:52+00:00"
         },
         {
             "name": "rector/rector",
-            "version": "0.12.5",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "e50e40e0fe73b88a46f27e086441e1998ceeca3c"
+                "reference": "e1aaf3061e9ae9342ed0824865e3a3360defddeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/e50e40e0fe73b88a46f27e086441e1998ceeca3c",
-                "reference": "e50e40e0fe73b88a46f27e086441e1998ceeca3c",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/e1aaf3061e9ae9342ed0824865e3a3360defddeb",
+                "reference": "e1aaf3061e9ae9342ed0824865e3a3360defddeb",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1|^8.0",
-                "phpstan/phpstan": "^1.1.1"
+                "php": "^7.4|^8.0",
+                "phpstan/phpstan": "^2.1.26"
             },
             "conflict": {
-                "phpstan/phpdoc-parser": "<1.2",
-                "rector/rector-cakephp": "*",
                 "rector/rector-doctrine": "*",
-                "rector/rector-laravel": "*",
-                "rector/rector-nette": "*",
-                "rector/rector-phpoffice": "*",
+                "rector/rector-downgrade-php": "*",
                 "rector/rector-phpunit": "*",
-                "rector/rector-prefixed": "*",
                 "rector/rector-symfony": "*"
+            },
+            "suggest": {
+                "ext-dom": "To manipulate phpunit.xml via the custom-rule command"
             },
             "bin": [
                 "bin/rector"
             ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "0.12-dev"
-                }
-            },
             "autoload": {
                 "files": [
                     "bootstrap.php"
@@ -117,10 +99,17 @@
             "license": [
                 "MIT"
             ],
-            "description": "Prefixed and PHP 7.1 downgraded version of rector/rector",
+            "description": "Instant Upgrade and Automated Refactoring of any PHP code",
+            "homepage": "https://getrector.com/",
+            "keywords": [
+                "automation",
+                "dev",
+                "migration",
+                "refactoring"
+            ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.12.5"
+                "source": "https://github.com/rectorphp/rector/tree/2.2.1"
             },
             "funding": [
                 {
@@ -128,7 +117,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-11-23T17:38:29+00:00"
+            "time": "2025-10-06T21:25:14+00:00"
         }
     ],
     "packages-dev": [
@@ -2513,12 +2502,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "~7.4 || ~8.0.0 || ~8.1.0"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
