@@ -178,7 +178,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
         /** @var Use_[] $uses */
         $uses = array_filter($namespace->stmts, fn (Stmt $stmt): bool => $stmt instanceof Use_);
 
-        foreach ($uses as $use) {
+        foreach ($uses as $stmtKey => $use) {
             /** @var UseItem|false $useUse */
             $useUse = current($use->uses);
 
@@ -191,12 +191,7 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
             }
 
             if ($useUse->name->toString() === 'Interop\Container\ContainerInterface') {
-                foreach ($namespace->stmts as $stmtKey => $stmt) {
-                    if ($stmt === $use) {
-                        unset($namespace->stmts[$stmtKey]);
-                        return $namespace;
-                    }
-                }
+                unset($namespace->stmts[$stmtKey]);
             }
         }
 
