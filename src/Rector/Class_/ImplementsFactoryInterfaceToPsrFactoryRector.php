@@ -16,7 +16,6 @@ use Rector\Configuration\Option;
 use Rector\Configuration\Parameter\SimpleParameterProvider;
 use Rector\PhpParser\Node\BetterNodeFinder;
 use Rector\PhpParser\Node\CustomNode\FileWithoutNamespace;
-use Rector\NodeTypeResolver\Node\AttributeKey;
 use Rector\Rector\AbstractRector;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -192,10 +191,12 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
             }
 
             if ($useUse->name->toString() === 'Interop\Container\ContainerInterface') {
-                $stmtKey = $use->getAttribute(AttributeKey::STMT_KEY);
-                unset($namespace->stmts[$stmtKey]);
-
-                return $namespace;
+                foreach ($namespace->stmts as $stmtKey => $stmt) {
+                    if ($stmt === $use) {
+                        unset($namespace->stmts[$stmtKey]);
+                        return $namespace;
+                    }
+                }
             }
         }
 
