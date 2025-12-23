@@ -15,7 +15,7 @@ use PhpParser\Node\UseItem;
 use Rector\Configuration\Option;
 use Rector\Configuration\Parameter\SimpleParameterProvider;
 use Rector\PhpParser\Node\BetterNodeFinder;
-use Rector\PhpParser\Node\CustomNode\FileWithoutNamespace;
+use Rector\PhpParser\Node\FileNode;
 use Rector\Rector\AbstractRector;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
@@ -60,15 +60,20 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
 
     public function getNodeTypes(): array
     {
-        return [Class_::class, FileWithoutNamespace::class, Namespace_::class];
+        return [Class_::class, FileNode::class, Namespace_::class];
     }
 
     /**
-     * @param Class_|FileWithoutNamespace|Namespace_ $node
+     * @param Class_|FileNode|Namespace_ $node
      */
     public function refactor(Node $node): ?Node
     {
-        if ($node instanceof FileWithoutNamespace || $node instanceof Namespace_) {
+        if ($node instanceof FileNode && $node->isNamespaced()) {
+            // handled in Namespace_ node
+            return null;
+        }
+
+        if ($node instanceof FileNode || $node instanceof Namespace_) {
             return $this->replaceUseInteropStatementOnAutoImportEnabled($node);
         }
 
@@ -169,8 +174,8 @@ final class ImplementsFactoryInterfaceToPsrFactoryRector extends AbstractRector
     }
 
     private function replaceUseInteropStatementOnAutoImportEnabled(
-        FileWithoutNamespace|Namespace_ $namespace
-    ): FileWithoutNamespace|Namespace_|null {
+        FileNode|Namespace_ $namespace
+    ): FileNode|Namespace_|null {
         if (! SimpleParameterProvider::provideBoolParameter(Option::AUTO_IMPORT_NAMES)) {
             return null;
         }
