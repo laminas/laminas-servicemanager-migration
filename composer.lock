@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b4f5df0c60e2b27e78be54cddfb7f84",
+    "content-hash": "5e4f26418632d8da88fe9bbdd7ec70dc",
     "packages": [
         {
             "name": "phpstan/phpstan",
@@ -61,16 +61,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "dev-main",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "8dcb063cccf78205ca4162f73be5bccd932510bb"
+                "reference": "f7166355dcf47482f27be59169b0825995f51c7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/8dcb063cccf78205ca4162f73be5bccd932510bb",
-                "reference": "8dcb063cccf78205ca4162f73be5bccd932510bb",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/f7166355dcf47482f27be59169b0825995f51c7d",
+                "reference": "f7166355dcf47482f27be59169b0825995f51c7d",
                 "shasum": ""
             },
             "require": {
@@ -86,7 +86,6 @@
             "suggest": {
                 "ext-dom": "To manipulate phpunit.xml via the custom-rule command"
             },
-            "default-branch": true,
             "bin": [
                 "bin/rector"
             ],
@@ -110,7 +109,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/main"
+                "source": "https://github.com/rectorphp/rector/tree/2.3.0"
             },
             "funding": [
                 {
@@ -118,7 +117,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-22T16:01:26+00:00"
+            "time": "2025-12-25T22:00:18+00:00"
         }
     ],
     "packages-dev": [
@@ -2119,9 +2118,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "rector/rector": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
