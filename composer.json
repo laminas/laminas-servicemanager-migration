@@ -16,7 +16,7 @@
     },
     "require": {
         "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
-        "rector/rector": "2.5.9"
+        "rector/rector": "2.6.0"
     },
     "require-dev": {
         "laminas/laminas-servicemanager": "^4.0",
